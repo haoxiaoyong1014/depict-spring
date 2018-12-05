@@ -5,7 +5,6 @@ depict-spring
 
 #### 1.step1-最基本的容器
 	
-	git checkout step-1-container-register-and-get
 
 IoC最基本的角色有两个：容器(`BeanFactory`)和Bean本身。这里使用`BeanDefinition`来封装了bean对象，这样可以保存一些额外的元信息。测试代码：
 
@@ -35,7 +34,7 @@ BeanFactory beanFactory = new AutowireCapableBeanFactory();
 
 // 2.注入bean
 BeanDefinition beanDefinition = new BeanDefinition();
-beanDefinition.setBeanClassName("us.codecraft.tinyioc.HelloWorldService");
+beanDefinition.setBeanClassName("cn.haoxiaoyong.depict.spring.HelloWorldService");
 beanFactory.registerBeanDefinition("helloWorldService", beanDefinition);
 
 // 3.获取bean
@@ -43,6 +42,34 @@ HelloWorldService helloWorldService = (HelloWorldService) beanFactory.getBean("h
 helloWorldService.helloWorld();
 ```
 
+#### step3-property---为bean注入属性
+
+这一步，我们想要为bean注入属性。我们选择将属性注入信息保存成PropertyValue对象，并且保存到BeanDefinition中。
+这样在初始化bean的时候，我们就可以根据PropertyValue来进行bean属性的注入。
+Spring本身使用了setter来进行注入，这里为了代码简洁，我们使用Field的形式来注入。
+
+```java
+//1,初始化BeanFactory
+BeanFactory beanFactory = new AutowireCapableBeanFactory();
+
+//2, 定义 bean
+
+ BeanDefinition beanDefinition = new BeanDefinition();
+ beanDefinition.setBeanClassName("cn.haoxiaoyong.depict.spring.HelloWorldService");
+
+//3,设置属性
+
+PropertyValues propertyValues = new PropertyValues();
+propertyValues.addPropertyValue(new PropertyValue("text", "HelloWorld"));
+beanDefinition.setPropertyValues(propertyValues);
+
+// 4.生成bean
+beanFactory.registerBeanDefinition("helloWorldService", beanDefinition);
+
+// 5.获取bean
+HelloWorldService helloWorldService = (HelloWorldService) beanFactory.getBean("helloWorldService");
+helloWorldService.helloWorld();
+```
 
 #### 学习参见
 

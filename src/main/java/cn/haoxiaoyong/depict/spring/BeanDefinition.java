@@ -5,13 +5,15 @@ package cn.haoxiaoyong.depict.spring;
  * E-mail:hxyHelloWorld@163.com
  * github:https://github.com/haoxiaoyong1014
  */
-public class BeanDefinitinon {
+public class BeanDefinition {
 
     private Object bean;
 
     private Class beanClass;
 
     private String beanClassName;
+
+    private PropertyValues propertyValues;
 
 
     public String getBeanClassName() {
@@ -20,6 +22,11 @@ public class BeanDefinitinon {
 
     public void setBeanClassName(String beanClassName) {
         this.beanClassName = beanClassName;
+        try {
+            this.beanClass = Class.forName(beanClassName);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setBean(Object bean) {
@@ -38,7 +45,7 @@ public class BeanDefinitinon {
         return bean;
     }
 
-    public BeanDefinitinon(String beanClassName) {
+    public BeanDefinition(String beanClassName) {
         this.beanClassName = beanClassName;
         try {
             this.beanClass = Class.forName(beanClassName);
@@ -47,6 +54,14 @@ public class BeanDefinitinon {
         }
     }
 
-    public BeanDefinitinon() {
+    public BeanDefinition() {
+    }
+
+    public PropertyValues getPropertyValues() {
+        return propertyValues;
+    }
+
+    public void setPropertyValues(PropertyValues propertyValues) {
+        this.propertyValues = propertyValues;
     }
 }

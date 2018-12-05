@@ -1,26 +1,45 @@
 package cn.haoxiaoyong.depict.spring.factory;
 
-import cn.haoxiaoyong.depict.spring.BeanDefinitinon;
+import cn.haoxiaoyong.depict.spring.BeanDefinition;
+import cn.haoxiaoyong.depict.spring.PropertyValue;
+import cn.haoxiaoyong.depict.spring.PropertyValues;
+
+import java.lang.reflect.Field;
 
 /**
  * Created by haoxy on 2018/12/4.
  * E-mail:hxyHelloWorld@163.com
  * github:https://github.com/haoxiaoyong1014
+ * 自动装载 BeanFactory
  */
 public class AutowireCapableBeanFactory extends AbstractBeanFactory {
 
-    protected Object doCreateBean(BeanDefinitinon beanDefinitinon) {
+    protected Object doCreateBean(BeanDefinition beanDefinition) throws Exception {
 
-        Class beanClass = beanDefinitinon.getBeanClass();
+        Object bean = createBeanInstance(beanDefinition);
+        applyPropertyValues(bean, beanDefinition);
+        return bean;
+    }
+
+    private Object createBeanInstance(BeanDefinition beanDefinition) {
+        Class beanClass = beanDefinition.getBeanClass();
         try {
-            Object bean = beanClass.newInstance();    //反射,根据无参创建对象
-            return bean;
+            Object obj = beanClass.newInstance();
+            return obj;
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
-
         return null;
+    }
+
+    private void applyPropertyValues(Object bean, BeanDefinition beanDefinition) throws Exception {
+
+        for (PropertyValue propertyValue : beanDefinition.getPropertyValues().getPropertyValueList()) {
+            Field declaredField = bean.getClass().getDeclaredField(propertyValue.getName());
+            declaredField.setAccessible(true);
+            declaredField.set(bean,propertyValue.getValue());
+        }
     }
 }

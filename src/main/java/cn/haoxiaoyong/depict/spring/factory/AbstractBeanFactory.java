@@ -1,6 +1,6 @@
 package cn.haoxiaoyong.depict.spring.factory;
 
-import cn.haoxiaoyong.depict.spring.BeanDefinitinon;
+import cn.haoxiaoyong.depict.spring.BeanDefinition;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -12,21 +12,25 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public abstract class AbstractBeanFactory implements BeanFactory {
 
-    private Map<String, BeanDefinitinon> beanDefinitinonMap = new ConcurrentHashMap<String, BeanDefinitinon>();
+    private Map<String, BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<>();
 
     public Object getBean(String name) {
-        return beanDefinitinonMap.get(name).getBean();
+        return beanDefinitionMap.get(name).getBean();
     }
 
-    public void registerBeanDefinition(String name, BeanDefinitinon beanDefinitinon){
+    public void registerBeanDefinition(String name, BeanDefinition beanDefinition) throws Exception {
 
-        Object bean = doCreateBean(beanDefinitinon);
-        beanDefinitinon.setBean(bean);
-        beanDefinitinonMap.put(name,beanDefinitinon);
+        Object bean = doCreateBean(beanDefinition);
+        beanDefinition.setBean(bean);
+        beanDefinitionMap.put(name, beanDefinition);
 
     }
-
-    protected abstract Object doCreateBean(BeanDefinitinon beanDefinitinon);
+    /**
+     * 初始化bean
+     * @param beanDefinition
+     * @return
+     */
+    protected abstract Object doCreateBean(BeanDefinition beanDefinition) throws Exception;
 
 
 }
