@@ -24,7 +24,6 @@ import java.util.Properties;
 public class BeanFactoryTest {
 
     private Properties contextConfig = new Properties();
-    private Object beans;
 
     @Test
     public void testBeanFactory() {
