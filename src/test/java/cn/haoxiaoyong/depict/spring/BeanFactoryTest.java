@@ -2,12 +2,15 @@ package cn.haoxiaoyong.depict.spring;
 
 import cn.haoxiaoyong.depict.spring.factory.AutowireCapableBeanFactory;
 import cn.haoxiaoyong.depict.spring.factory.BeanFactory;
+import cn.haoxiaoyong.depict.spring.io.ResourceLoader;
+import cn.haoxiaoyong.depict.spring.xml.XmlBeanDefinitionReader;
 import org.junit.Test;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -21,17 +24,19 @@ public class BeanFactoryTest {
 
     @Test
     public void testBeanFactory() throws Exception {
+        // 1.读取配置
+        XmlBeanDefinitionReader xmlBeanDefinitionReader = new XmlBeanDefinitionReader(new ResourceLoader());
+        xmlBeanDefinitionReader.loadBeanDefinitions("depict.xml");
+
+        // 2.初始化BeanFactory并注册bean
         BeanFactory beanFactory = new AutowireCapableBeanFactory();
-        BeanDefinition beanDefinition = new BeanDefinition();
-        beanDefinition.setBeanClassName("cn.haoxiaoyong.depict.spring.HelloWorldService");
-        //设置属性
-        PropertyValues propertyValues = new PropertyValues();
-        propertyValues.addPropertyValue(new PropertyValue("text", "HelloWorld"));
-        beanDefinition.setPropertyValues(propertyValues);
-        beanFactory.registerBeanDefinition("helloWorldService", beanDefinition);
-        //获取 bean
-        HelloWorldService helloWorldService1 = (HelloWorldService) beanFactory.getBean("helloWorldService");
-        helloWorldService1.helloWorld();
+        for (Map.Entry<String, BeanDefinition> beanDefinitionEntry : xmlBeanDefinitionReader.getRegistry().entrySet()) {
+            beanFactory.registerBeanDefinition(beanDefinitionEntry.getKey(), beanDefinitionEntry.getValue());
+        }
+
+        // 3.获取bean
+        HelloWorldService helloWorldService = (HelloWorldService) beanFactory.getBean("helloWorldService");
+        helloWorldService.helloWorld();
 
     }
 }

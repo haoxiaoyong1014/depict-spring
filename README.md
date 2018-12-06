@@ -71,6 +71,27 @@ HelloWorldService helloWorldService = (HelloWorldService) beanFactory.getBean("h
 helloWorldService.helloWorld();
 ```
 
+#### 4.step4-读取xml配置来初始化bean
+
+定义了BeanDefinitionReader初始化bean，它有一个实现是XmlBeanDefinitionReader
+
+```java
+        // 1.读取配置
+        XmlBeanDefinitionReader xmlBeanDefinitionReader = new XmlBeanDefinitionReader(new ResourceLoader());
+        xmlBeanDefinitionReader.loadBeanDefinitions("depict.xml");
+
+        // 2.初始化BeanFactory并注册bean
+        BeanFactory beanFactory = new AutowireCapableBeanFactory();
+        for (Map.Entry<String, BeanDefinition> beanDefinitionEntry : xmlBeanDefinitionReader.getRegistry().entrySet()) {
+            beanFactory.registerBeanDefinition(beanDefinitionEntry.getKey(), beanDefinitionEntry.getValue());
+        }
+
+        // 3.获取bean
+        HelloWorldService helloWorldService = (HelloWorldService) beanFactory.getBean("helloWorldService");
+        helloWorldService.helloWorld();
+
+```
+
 #### 学习参见
 
 [tiny-spring](https://github.com/code4craft/tiny-spring)
