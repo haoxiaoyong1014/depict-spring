@@ -1,8 +1,6 @@
 package cn.haoxiaoyong.depict.spring.xml;
 
-import cn.haoxiaoyong.depict.spring.AbstractBeanDefinitionReader;
-import cn.haoxiaoyong.depict.spring.BeanDefinition;
-import cn.haoxiaoyong.depict.spring.PropertyValue;
+import cn.haoxiaoyong.depict.spring.*;
 import cn.haoxiaoyong.depict.spring.io.ResourceLoader;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -30,6 +28,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
     public void loadBeanDefinitions(String location) throws Exception {
 
         InputStream inputStream = getResourceLoader().getResource(location).getInputStream();
+
         doLoadBeanDefinitions(inputStream);
 
     }
@@ -78,7 +77,17 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
                 Element propertyEle = (Element) node;
                 String name = propertyEle.getAttribute("name");
                 String value = propertyEle.getAttribute("value");
-                beanDefinition.getPropertyValues().addPropertyValue(new PropertyValue(name, value));
+                if (value != null && value.length() > 0) {
+                    beanDefinition.getPropertyValues().addPropertyValue(new PropertyValue(name, value));
+                } else {
+                    String ref = propertyEle.getAttribute("ref");
+                    if (ref == null || ref.length() == 0) {
+                        throw new IllegalArgumentException("Configuration problem: <property> element for property '"
+                                + name + "' must specify a ref or value");
+                    }
+                    BeanReference beanReference = new BeanReference(ref);
+                    beanDefinition.getPropertyValues().addPropertyValue(new PropertyValue(name, beanReference));
+                }
             }
         }
     }
