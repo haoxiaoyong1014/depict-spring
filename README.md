@@ -141,7 +141,7 @@ helloWorldService.helloWorld();
 现在BeanFactory的功能齐全了，但是使用起来有点麻烦。于是我们引入熟悉的`ApplicationContext`接口，并在`AbstractApplicationContext`的`refresh()`方法中进行bean的初始化工作。
 
 ```java
-ApplicationContext applicationContext = new ClassPathXmlApplicationContext("tinyioc.xml");
+ApplicationContext applicationContext = new ClassPathXmlApplicationContext("depict.xml");
 HelloWorldService helloWorldService = (HelloWorldService) applicationContext.getBean("helloWorldService");
 helloWorldService.helloWorld();
 ```
