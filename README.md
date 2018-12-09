@@ -134,7 +134,19 @@ HelloWorldService helloWorldService = (HelloWorldService) beanFactory.getBean("h
 helloWorldService.helloWorld();
 ```
 
+#### 6.step6-ApplicationContext登场
 
+	git checkout step-6-invite-application-context
+	
+现在BeanFactory的功能齐全了，但是使用起来有点麻烦。于是我们引入熟悉的`ApplicationContext`接口，并在`AbstractApplicationContext`的`refresh()`方法中进行bean的初始化工作。
+
+```java
+ApplicationContext applicationContext = new ClassPathXmlApplicationContext("tinyioc.xml");
+HelloWorldService helloWorldService = (HelloWorldService) applicationContext.getBean("helloWorldService");
+helloWorldService.helloWorld();
+```
+
+是不是非常熟悉？至此为止，我们的tiny-spring的IoC部分可说完工了。这部分的类、方法命名和作用，都是对应Spring中相应的组件。虽然代码量只有400多行，但是已经有了基本的IoC功能！
 #### 学习参见
 
 [tiny-spring](https://github.com/code4craft/tiny-spring)
