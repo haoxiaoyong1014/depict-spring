@@ -17,13 +17,14 @@ public class ClassPathXmlApplicationContext extends AbstractApplictionContext {
 
     private String location;
 
-    public ClassPathXmlApplicationContext(String location) {
+    public ClassPathXmlApplicationContext(String location) throws Exception {
         this(location, new AutowireCapableBeanFactory());
     }
 
-    public ClassPathXmlApplicationContext(String location, AbstractBeanFactory beanFactory) {
+    public ClassPathXmlApplicationContext(String location, AbstractBeanFactory beanFactory) throws Exception {
         super(beanFactory);
         this.location = location;
+        refresh();
     }
 
     @Override
