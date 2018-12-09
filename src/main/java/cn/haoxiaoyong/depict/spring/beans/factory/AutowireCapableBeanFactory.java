@@ -1,9 +1,8 @@
-package cn.haoxiaoyong.depict.spring.factory;
+package cn.haoxiaoyong.depict.spring.beans.factory;
 
-import cn.haoxiaoyong.depict.spring.BeanDefinition;
+import cn.haoxiaoyong.depict.spring.beans.BeanDefinition;
 import cn.haoxiaoyong.depict.spring.BeanReference;
-import cn.haoxiaoyong.depict.spring.PropertyValue;
-import cn.haoxiaoyong.depict.spring.PropertyValues;
+import cn.haoxiaoyong.depict.spring.beans.PropertyValue;
 
 import java.lang.reflect.Field;
 

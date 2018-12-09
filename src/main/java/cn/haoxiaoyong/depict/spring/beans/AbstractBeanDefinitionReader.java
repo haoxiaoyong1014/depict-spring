@@ -1,6 +1,6 @@
-package cn.haoxiaoyong.depict.spring;
+package cn.haoxiaoyong.depict.spring.beans;
 
-import cn.haoxiaoyong.depict.spring.io.ResourceLoader;
+import cn.haoxiaoyong.depict.spring.beans.io.ResourceLoader;
 
 import java.util.HashMap;
 import java.util.Map;

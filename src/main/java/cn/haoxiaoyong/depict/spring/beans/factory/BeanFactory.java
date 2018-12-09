@@ -1,6 +1,6 @@
-package cn.haoxiaoyong.depict.spring.factory;
+package cn.haoxiaoyong.depict.spring.beans.factory;
 
-import cn.haoxiaoyong.depict.spring.BeanDefinition;
+import cn.haoxiaoyong.depict.spring.beans.BeanDefinition;
 
 /**
  * Created by haoxy on 2018/12/4.

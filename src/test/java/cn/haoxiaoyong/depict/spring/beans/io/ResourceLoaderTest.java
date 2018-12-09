@@ -1,4 +1,4 @@
-package cn.haoxiaoyong.depict.spring.io;
+package cn.haoxiaoyong.depict.spring.beans.io;
 
 import org.junit.Assert;
 import org.junit.Test;

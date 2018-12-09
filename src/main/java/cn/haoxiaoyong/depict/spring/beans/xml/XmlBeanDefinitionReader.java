@@ -1,7 +1,10 @@
-package cn.haoxiaoyong.depict.spring.xml;
+package cn.haoxiaoyong.depict.spring.beans.xml;
 
 import cn.haoxiaoyong.depict.spring.*;
-import cn.haoxiaoyong.depict.spring.io.ResourceLoader;
+import cn.haoxiaoyong.depict.spring.beans.AbstractBeanDefinitionReader;
+import cn.haoxiaoyong.depict.spring.beans.BeanDefinition;
+import cn.haoxiaoyong.depict.spring.beans.PropertyValue;
+import cn.haoxiaoyong.depict.spring.beans.io.ResourceLoader;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -9,8 +12,6 @@ import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
 import java.io.InputStream;
 
 /**

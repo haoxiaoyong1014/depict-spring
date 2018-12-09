@@ -1,4 +1,4 @@
-package cn.haoxiaoyong.depict.spring;
+package cn.haoxiaoyong.depict.spring.beans;
 
 /**
  * Created by haoxy on 2018/12/5.

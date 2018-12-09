@@ -1,4 +1,4 @@
-package cn.haoxiaoyong.depict.spring;
+package cn.haoxiaoyong.depict.spring.beans;
 
 import java.util.*;
 

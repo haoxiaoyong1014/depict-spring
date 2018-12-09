@@ -1,7 +1,7 @@
-package cn.haoxiaoyong.depict.spring.xml;
+package cn.haoxiaoyong.depict.spring.beans.xml;
 
-import cn.haoxiaoyong.depict.spring.BeanDefinition;
-import cn.haoxiaoyong.depict.spring.io.ResourceLoader;
+import cn.haoxiaoyong.depict.spring.beans.BeanDefinition;
+import cn.haoxiaoyong.depict.spring.beans.io.ResourceLoader;
 import org.junit.Assert;
 import org.junit.Test;
 

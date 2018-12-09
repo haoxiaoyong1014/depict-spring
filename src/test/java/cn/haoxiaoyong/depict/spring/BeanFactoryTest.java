@@ -1,16 +1,12 @@
 package cn.haoxiaoyong.depict.spring;
 
-import cn.haoxiaoyong.depict.spring.factory.AbstractBeanFactory;
-import cn.haoxiaoyong.depict.spring.factory.AutowireCapableBeanFactory;
-import cn.haoxiaoyong.depict.spring.factory.BeanFactory;
-import cn.haoxiaoyong.depict.spring.io.ResourceLoader;
-import cn.haoxiaoyong.depict.spring.xml.XmlBeanDefinitionReader;
+import cn.haoxiaoyong.depict.spring.beans.BeanDefinition;
+import cn.haoxiaoyong.depict.spring.beans.factory.AbstractBeanFactory;
+import cn.haoxiaoyong.depict.spring.beans.factory.AutowireCapableBeanFactory;
+import cn.haoxiaoyong.depict.spring.beans.io.ResourceLoader;
+import cn.haoxiaoyong.depict.spring.beans.xml.XmlBeanDefinitionReader;
 import org.junit.Test;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.Properties;
 

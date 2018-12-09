@@ -1,6 +1,6 @@
-package cn.haoxiaoyong.depict.spring.factory;
+package cn.haoxiaoyong.depict.spring.beans.factory;
 
-import cn.haoxiaoyong.depict.spring.BeanDefinition;
+import cn.haoxiaoyong.depict.spring.beans.BeanDefinition;
 
 import java.util.ArrayList;
 import java.util.Iterator;
